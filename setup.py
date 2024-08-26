@@ -14,7 +14,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 _pkgName = "audiofs"
 _version = "0.3"
@@ -30,7 +30,7 @@ setup(author = "James MacKay",
     platforms = "linux",
     requires = ["fuse (>=0.2)"],
     package_dir = { '': 'src' },
-    packages = [_pkgName],
+    packages = find_packages(where="src"),
     scripts = ["src/%s" % s for s in ["activate-music-directory",
         "build-music-directory", "catalogue-music-directory",
         "change-music-rating", "create-compact-album-list", "create-playlist",
