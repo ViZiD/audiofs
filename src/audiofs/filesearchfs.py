@@ -34,9 +34,9 @@ import sqlite3 as sqlite
 from fuse import Direntry
 import fuse
 
-from fscommon import debug, report, warn
-import fscommon
-import utilities as ut
+from audiofs.fscommon import debug, report, warn
+from audiofs import fscommon
+import audiofs.utilities as ut
 
 
 # Constants.

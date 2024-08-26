@@ -24,11 +24,11 @@ import time
 
 import getopt
 
-import mpd
-import musicfs
+from audiofs import mpd
+from audiofs import musicfs
 
-import config
-import utilities as ut
+from audiofs import config
+import audiofs.utilities as ut
 
 
 # Constants.

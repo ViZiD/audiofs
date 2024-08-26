@@ -25,8 +25,8 @@ import sys
 
 import time
 
-from fscommon import *
-import utilities as ut
+from audiofs.fscommon import *
+import audiofs.utilities as ut
 
 
 # Constants.

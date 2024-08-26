@@ -20,12 +20,12 @@ import os
 import os.path
 import sys
 
-import mergedfs
-import music
-import musicfs
+from audiofs import mergedfs
+from audiofs import music
+from audiofs import musicfs
 
-import config
-import utilities as ut
+from audiofs import config
+import audiofs.utilities as ut
 
 
 # Constants.

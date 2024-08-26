@@ -30,8 +30,8 @@ import optparse
 import fuse
 from fuse import Direntry
 
-import utilities as ut
-import config
+import audiofs.utilities as ut
+from audiofs import config
 
 
 # Configuration.

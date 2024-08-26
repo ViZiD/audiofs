@@ -23,13 +23,13 @@
 import os
 import os.path
 
-import musicfs
-import music
-import mergedfs
-from fscommon import debug, report, warn
-import fscommon
-import config
-import utilities as ut
+from audiofs import musicfs
+from audiofs import music
+from audiofs import mergedfs
+from audiofs.fscommon import debug, report, warn
+from audiofs import fscommon
+from audiofs import config
+import audiofs.utilities as ut
 
 
 # Constants.

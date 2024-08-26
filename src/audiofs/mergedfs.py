@@ -26,10 +26,10 @@ import sys
 
 from fuse import Direntry
 
-import fscommon
-from fscommon import debug, report, warn, fs_defaultFileSize, \
+from audiofs import fscommon
+from audiofs.fscommon import debug, report, warn, fs_defaultFileSize, \
     fs_handleNoSuchFile, fs_handleDenyAccess
-import utilities as ut
+import audiofs.utilities as ut
 
 
 # Constants.

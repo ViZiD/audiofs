@@ -20,13 +20,13 @@
 import os
 import os.path
 
-from filesearchfs import fs_AbstractFileSearchFilesystem
-import filesearchfs
-import musicfs
+from audiofs.filesearchfs import fs_AbstractFileSearchFilesystem
+from audiofs import filesearchfs
+from audiofs import musicfs
 
-from fscommon import debug, report, warn
-import fscommon
-import utilities as ut
+from audiofs.fscommon import debug, report, warn
+from audiofs import fscommon
+import audiofs.utilities as ut
 
 
 # Constants.
