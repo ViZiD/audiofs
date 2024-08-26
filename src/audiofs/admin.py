@@ -150,7 +150,7 @@ def ad_parseVerbosityOptions(cmdArgs):
                 verbosity = QUIET
             elif opt in ("-S", "--silent"):
                 verbosity = SILENT
-    except getopt.GetoptError, ex:
+    except getopt.GetoptError as ex:
         otherArgs.append(ex.opt)
     if args:
         otherArgs.extend(args)
@@ -261,7 +261,7 @@ The other options are:
         a = ad_MusicDirectoryAdministrator(argsMap["verbosity"])
         try:
             self._ad_administer(a, argsMap)
-        except ad_FatalAdminError, ex:
+        except ad_FatalAdminError as ex:
             self._fail(str(ex))
             result = 2
         assert result >= 0
@@ -965,7 +965,7 @@ the following directories:
             ut.ut_createDirectory(d)
             self._ad_debug("created the subdirectory '%s' (or it already "
                            "existed)" % d)
-        except OSError, ex:
+        except OSError as ex:
             self._ad_die("Couldn't create the subdirectory '%s': "
                          "%s" % (d, str(ex)))
 
@@ -979,7 +979,7 @@ the following directories:
         try:
             os.symlink(src, dest)
             self._ad_debug("created symlink '%s' ->\n    %s" % (dest, src))
-        except OSError, ex:
+        except OSError as ex:
             self._ad_die("Couldn't create the symlink '%s' that\nlinks to "
                          "'%s': %s" % (dest, src, str(ex)))
 
@@ -1076,7 +1076,7 @@ the following directories:
         try:
             ut.ut_deleteFileOrDirectory(path)
             result = True
-        except OSError, ex:
+        except OSError as ex:
             self._ad_report("Failed to delete the file '%s': %s" % (path, ex))
         return result
 
@@ -1086,8 +1086,8 @@ the following directories:
         """
         assert msg is not None
         if self._ad_verbosity > SILENT:
-            print >> sys.stderr, "\n%s\n" % msg
-        raise ad_FatalAdminError, msg
+            print("\n%s\n" % msg,file=sys.stderr)
+        raise ad_FatalAdminError(msg)
 
     def _ad_fail(self, msg):
         """
@@ -1095,7 +1095,7 @@ the following directories:
         """
         assert msg is not None
         if self._ad_verbosity > SILENT:
-            print >> sys.stderr, msg
+            print(msg, file=sys.stderr)
 
     def _ad_report(self, msg):
         """
@@ -1103,7 +1103,7 @@ the following directories:
         """
         assert msg is not None
         if self._ad_verbosity > QUIET:
-            print msg
+            print(msg)
 
     def _ad_debug(self, msg):
         """
@@ -1111,4 +1111,4 @@ the following directories:
         """
         assert msg is not None
         if self._ad_verbosity >= VERBOSE:
-            print "DEBUG: " + msg
+            print("DEBUG: " + msg)

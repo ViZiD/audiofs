@@ -274,7 +274,7 @@ def debug(msg):
     """
     Outputs the debugging message 'msg'.
     """
-    print >> sys.stderr, msg
+    print(msg, file=sys.stderr)
 
 
 # Classes.
@@ -953,7 +953,7 @@ otherwise no file's rating is changed.
             result = True
             try:
                 argsMap["amount"] = ut.ut_parseInt(val, minValue = 0)
-            except ValueError, ex:
+            except ValueError:
                 result = False
                 self._fail("Invalid amount: '%s'" % amt)
         else:
@@ -2027,56 +2027,56 @@ def main():
     server = mp_Mpd()
     unknown = "[unknown]"
 
-    print
-    print "MPD server version = '%s'" % server.version()
+    print()
+    print("MPD server version = '%s'" % server.version())
 
-    print ""
+    print("")
     val = server.currentTrackPathname()
     if val is None:
         val = unknown
-    print "current track pathname: %s" % val
+    print("current track pathname: %s" % val)
     val = server.trackNumber()
     if val is None:
         val = unknown
-    print "current track number: %s" % val
+    print("current track number: %s" % val)
     val = server.trackTitle()
     if val is None:
         val = unknown
-    print "              title: %s" % val
+    print("              title: %s" % val)
     val = server.artist()
     if val is None:
         val = unknown
-    print "              artist: %s" % val
+    print("              artist: %s" % val)
     val = server.albumTitle()
     if val is None:
         val = unknown
-    print "              album: %s" % val
+    print("              album: %s" % val)
     val = server.genre()
     if val is None:
         val = unknown
-    print "              genre: %s" % val
+    print("              genre: %s" % val)
     val = server.releaseDate()
     if val is None:
         val = unknown
-    print "              release date: %s" % val
+    print("              release date: %s" % val)
     val = server.comment()
     if val is None:
         val = unknown
-    print "              comment: %s" % val
+    print("              comment: %s" % val)
 
-    print
+    print()
     val = server.currentTrackPosition()
     if val == 0:
         val = unknown
-    print "current track position: %s" % str(val)
+    print("current track position: %s" % str(val))
     val = server.rating()
     if val is None:
         val = unknown
-    print "current track rating: %s" % str(val)
+    print("current track rating: %s" % str(val))
     val = server.trackCount()
     if val is None:
         val = unknown
-    print "total number of tracks: %s" % str(val)
+    print("total number of tracks: %s" % str(val))
 
 if __name__ == '__main__':
     main()

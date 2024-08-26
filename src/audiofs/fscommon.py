@@ -37,8 +37,7 @@ import config
 # Configuration.
 
 if not hasattr(fuse, '__version__'):
-    raise RuntimeError, \
-        "your fuse-py doesn't know of fuse.__version__, probably it's too old."
+    raise RuntimeError("your fuse-py doesn't know of fuse.__version__, probably it's too old.")
 
 fuse.fuse_python_api = (0, 2)
 
@@ -79,7 +78,7 @@ def debug(msg):
     Logs the debugging message 'msg', if we're logging debugging messages.
     """
     #print "---> in debug(%s)" % msg
-    print >> _fs_debugLogFile, msg
+    print(msg, file=_fs_debugLogFile)
     _fs_debugLogFile.flush()
 
 def report(msg):
@@ -87,7 +86,7 @@ def report(msg):
     Logs the message 'msg' as an informational message.
     """
     #print "---> in report(%s)" % msg
-    print >> _fs_logFile, msg
+    print(msg, file=_fs_logFile)
     _fs_logFile.flush()
 
 def warn(msg):
@@ -95,7 +94,7 @@ def warn(msg):
     Logs the message 'msg' as a warning message.
     """
     #print "---> in warn(%s)" % msg
-    print >> _fs_logFile, "WARNING: " + msg
+    print("WARNING: " + msg,file=_fs_logFile)
     _fs_logFile.flush()
 
 
@@ -105,7 +104,7 @@ def die(msg, ex = None):
     to either exit (if 'ex' is None) or raise the exception 'ex'.
     """
     #print "---> in die(%s, %s)" % (msg, str(ex))
-    print >> _fs_logFile, "*** FATAL ERROR: %s" % msg
+    print("*** FATAL ERROR: %s" % msg, file=_fs_logFile)
     try:
         _fs_logFile.close()
     finally:
@@ -368,8 +367,7 @@ class fs_AbstractReadOnlyFileStat(object):
         modified for a file in a read-only filesystem.
         """
         #debug("-0-> in _fs_unsettable(%s)" % newValue)
-        raise AttributeError, "can't set file stat information for " + \
-            "files in a read-only filesystem"
+        raise AttributeError("can't set file stat information for files in a read-only filesystem")
 
     def _fs_getMode(self):
         """
@@ -709,7 +707,7 @@ class fs_AbstractReadOnlyFile(object):
         directly.
         """
         #debug("---> in _fs_unsettable(%s)" % newValue)
-        raise AttributeError, "can't set the value of this property directly"
+        raise AttributeError("can't set the value of this property directly")
 
     def _fs_directIO(self):
         """
@@ -989,7 +987,7 @@ class fs_ReadOnlyBeingGeneratedFile(fs_AbstractReadOnlyFile):
             #debug("    trying to open '%s' for reading ..." % p)
             result = file(p, "r")
             #debug("    successfully opened '%s' for reading" % p)
-        except IOError, ex:
+        except IOError as ex:
             if ex.errno == errno.ENOENT:
                 result = None  # file doesn't exist
             else:
@@ -1239,10 +1237,10 @@ class fs_AbstractFilesystem(fuse.Fuse):
         if self.fuse_args.mount_expected():
             try:
                 self.fs_processOptions(opts)
-            except fs_OptionParsingException, ex:
+            except fs_OptionParsingException as ex:
                 areArgsValid = False
                 fullMsg = "\n%s%s\n" % (ex.fs_message(), usageMsg)
-                print >> sys.stderr, fullMsg
+                print(fullMsg, file=sys.stderr)
         if areArgsValid:
             self.main()
 
