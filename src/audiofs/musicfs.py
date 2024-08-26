@@ -24,7 +24,7 @@ import os.path
 import sys
 
 import xml.sax
-import anydbm
+import dbm.ndbm as anydbm
 import shelve
 import random
 import time
