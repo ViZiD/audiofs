@@ -726,9 +726,9 @@ class fs_AbstractFileSearchFilesystem(fscommon.fs_MinimalAbstractReadOnlyFilesys
         assert parts is not None
         numParts = len(parts)
         md = 3
-        keys = [parts[i] for i in xrange(0, numParts, md)]
-        vals = [parts[i] for i in xrange(1, numParts, md)]
-        ands = [parts[i] for i in xrange(2, numParts - 1, md)]
+        keys = [parts[i] for i in range(0, numParts, md)]
+        vals = [parts[i] for i in range(1, numParts, md)]
+        ands = [parts[i] for i in range(2, numParts - 1, md)]
             # won't include last 'and' if pathname is that of an 'and' dir
         result = (keys, vals, ands)
         assert len(result) == 3

@@ -254,9 +254,9 @@ pathname '%(defaultScreenConfig)s' will be used.
         (host, port) = _conf.mpdServer(desc)
 
         subcmd = _clientCmdFmt % (clientProgram, host, port)
-        print "subcmd = %s" % subcmd
+        print("subcmd = %s" % subcmd)
         cmd = _screenWindowCmdFmt % (serverId, windowIndex, subcmd)
-        print "cmd = %s" % cmd
+        print("cmd = %s" % cmd)
         f.write(cmd)
         f.write("\n")
 

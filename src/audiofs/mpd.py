@@ -1151,7 +1151,7 @@ class mp_PlaylistSnapshot(object):
         sz = len(self._mp_pathnames)
         currInd = self.currentItemIndex()
         result = "playlist with %i items (curr ind = %i):\n" % (sz, currInd)
-        for i in xrange(sz):
+        for i in range(sz):
             if i == currInd:
                 result += " > "
             else:
@@ -1703,7 +1703,7 @@ class mp_Mpd(object):
         """
         assert n > 0
         result = True
-        for i in xrange(n):
+        for i in range(n):
             wasRemoved = self.doesMpcCommandSucceed("del 1")
             if not wasRemoved:
                 result = False

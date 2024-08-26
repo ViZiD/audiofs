@@ -568,7 +568,7 @@ def ut_parseSpaceIntoBytes(val):
                 mult = _ut_spaceUnitsMultiple
                 unitIndex = _ut_spaceUnitsInOrder.index(unit)
                 result = num
-                for i in xrange(unitIndex):
+                for i in range(unitIndex):
                     result *= mult
         except:
             # Either 'unit' isn't a valid unit or 'num' isn't an integer
@@ -2308,7 +2308,7 @@ class ut_LeastRecentlyAddedCache(object):
         lines = []
         lines.append("Cache of class %s: low = %i, high = %i" % (self.__class__, self._ut_lowSize, self._ut_highSize))
         lines.append("From 'oldest' to 'newest' its %i items are:" % sz)
-        for i in xrange(sz):
+        for i in range(sz):
             key = lst[i]
             val = m[key]
             lines.append(itemFmt % (i, str(key), str(val)))
@@ -2346,7 +2346,7 @@ class ut_LeastRecentlyAddedCache(object):
         numToRemove = sz - self._ut_lowSize
         m = self._ut_map
         lst = self._ut_keysList
-        for i in xrange(numToRemove):
+        for i in range(numToRemove):
             key = lst[i]
             self._onRemoval(key, m[key])
             del m[key]
@@ -2475,7 +2475,7 @@ class ut_LeastRecentlyUsedCache(object):
         lines = []
         lines.append("Cache of class %s: low = %i, high = %i" % (self.__class__, self._ut_lowSize, self._ut_highSize))
         lines.append("From 'oldest' to 'newest' its %i items are:" % sz)
-        for i in xrange(sz):
+        for i in range(sz):
             key = lst[i]
             (val, updateIndex) = m[key]
             lines.append(itemFmt % (i, updateIndex, str(key), str(val)))
@@ -2568,7 +2568,7 @@ class ut_LeastRecentlyUsedCache(object):
         assert sz > self._ut_highSize
         numToRemove = sz - self._ut_lowSize
         m = self._ut_map
-        for i in xrange(self._ut_nextUpdateIndex):
+        for i in range(self._ut_nextUpdateIndex):
             key = ui2k.get(i)
             if key is not None:
                 self._onRemoval(key, m[key][0])
@@ -2586,7 +2586,7 @@ class ut_LeastRecentlyUsedCache(object):
         oldMap = self._ut_map
         newMap = {}
         newList = []
-        for i in xrange(self._ut_nextUpdateIndex):
+        for i in range(self._ut_nextUpdateIndex):
             key = ui2k.get(i)
             if key is not None:
                 val = oldMap[key][0]

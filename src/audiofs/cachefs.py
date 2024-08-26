@@ -306,7 +306,7 @@ class fs_CachingFilesystem(fs_AbstractFilesystem):
                 orderedFiles = list(self._fs_fileSet)
                 orderedFiles.sort(_fs_compareFilesByAccessTime)
                 if numExcess > 0:
-                    for i in xrange(numExcess):
+                    for i in range(numExcess):
                         self._fs_deleteFirstFile(orderedFiles)
                     assert self._fs_excessNumberOfFiles() == 0
                     if isOverCap:

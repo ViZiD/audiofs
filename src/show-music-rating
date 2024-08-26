@@ -156,7 +156,7 @@ this case: a music file's "real" pathname is never included.
 
         ratings = mm.fs_allRatings(pathsToRate, ratingsBase)
         assert sz == len(ratings)
-        for i in xrange(sz):
+        for i in range(sz):
             doShow = True
             r = ratings[i]
             if r is None:
@@ -183,7 +183,7 @@ this case: a music file's "real" pathname is never included.
                         line = longLineFmt % (r, af, f)
                 else:
                     line = shortLineFmt % (r, origPaths[i])
-                print line
+                print(line)
         assert result >= 0
         return result
 

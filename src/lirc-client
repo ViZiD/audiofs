@@ -69,8 +69,7 @@ def _printAction(keycode):
     Given a Keycode object 'keycode' prints out information about it to the
     standard output and returns True.
     """
-    print "%s from %s repeated %i times" % \
-        (keycode.name, keycode.origin, keycode.repeatCount)
+    print("%s from %s repeated %i times" % (keycode.name, keycode.origin, keycode.repeatCount))
     return True
 
 def _ignoreAction(keycode):
@@ -274,9 +273,9 @@ wrong when performing the action corresponding to a keycode.
         try:
             configFile = self._configurationFilePathname(argsMap)
             configMap = self._parseConfigurationFile(configFile)
-        except IOError, ex:
+        except IOError as ex:
             result = 1  # '_fail()' has already been called.
-        except SyntaxError, ex:
+        except SyntaxError as ex:
             result = 2  # '_fail()' has already been called.
         if result == 0:
             # Note: 'configMap' and 'configFile' may be None
@@ -289,9 +288,9 @@ wrong when performing the action corresponding to a keycode.
                     actionMap = self._parseMapFile(mapFile)
                     if actionMap is None:
                         actionMap = {}
-                except IOError, ex:
+                except IOError as ex:
                     result = 4  # '_fail()' has already been called.
-                except SyntaxError, ex:
+                except SyntaxError as ex:
                     result = 5  # '_fail()' has already been called.
                 if result == 0:
                     if mapFile is None or argsMap["doPrintByDefault"]:
@@ -427,11 +426,11 @@ wrong when performing the action corresponding to a keycode.
                 result = initMap.copy()
             try:
                 ut.ut_updateMapByExecutingFile(path, result)
-            except IOError, ex:
+            except IOError as ex:
                 self._fail("Couldn't read the %s file '%s': %s" %
                            (fileDesc, path, ex))
                 raise ex
-            except SyntaxError, ex:
+            except SyntaxError as ex:
                 self._fail("Error in %s file '%s': %s" %
                            (fileDesc, path, ex))
                 raise ex
@@ -513,9 +512,9 @@ wrong when performing the action corresponding to a keycode.
                     self._processOneKeycode(line, actionMap, defaultAction)
                 else:
                     raise EOFError("LIRC client reached keycode socket EOF")
-            except KeyboardInterrupt, ex:
+            except KeyboardInterrupt as ex:
                 raise ex
-            except EOFError, ex:
+            except EOFError as ex:
                 raise ex
             except:
                 result = doKeepGoing

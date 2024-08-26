@@ -145,11 +145,11 @@ shell command 'cmd' is executed as though it was executed as
             (host, port) = _conf.selectedMpdServer()
                 # which uses the default server if one isn't selected
         if argsMap["asEnv"]:
-            print _envFmt % (host, port)
+            print(_envFmt % (host, port))
         else:
             cmd = argsMap["cmd"]
             if cmd is None:
-                print _defaultFmt % (host, port)
+                print(_defaultFmt % (host, port))
             else:  # 'cmd' is not None
                 cmd = _cmdFmt % (host, port, cmd)
                 output = ut.ut_executeShellCommand(cmd)

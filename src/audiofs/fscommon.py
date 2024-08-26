@@ -902,7 +902,7 @@ class fs_ReadOnlyBeingGeneratedFile(fs_AbstractReadOnlyFile):
                 #debug("    found a file to read from: seeking to offset %i" % offset)
                 f.seek(offset)
                 numTries = _fs_numBeingGeneratedReadTries
-                for i in xrange(numTries):
+                for i in range(numTries):
                     #debug("    try #%i: reading at most %i bytes" % (i + 1, length))
                     result = f.read(length)
                     if result:

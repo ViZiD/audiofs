@@ -680,7 +680,7 @@ is '%(htmlFmt)s', and the default plain text if 'fmt' is '%(textFmt)s'.
         try:
             try:
                 f = file(ratingsPath)
-            except BaseException, ex:
+            except BaseException as ex:
                 result = 1
                 self._fail("Couldn't open the ratings file '%s' for "
                            "reading: %s" % (ratingsPath, str(ex)))
@@ -698,7 +698,7 @@ is '%(htmlFmt)s', and the default plain text if 'fmt' is '%(textFmt)s'.
                         break  # while
                     try:
                         p.processLine(line)
-                    except ProcessingException, ex:
+                    except ProcessingException as ex:
                         result = 1
                         self._fail("Processing a line in the ratings file "
                             "'%s' failed: %s" % (path, str(ex)))

@@ -168,7 +168,7 @@ def _writeConfigurationFileContentsTo(f, path, configFile):
     try:
         try:
             src = file(configFile, "r")
-        except BaseException, ex:
+        except BaseException as ex:
             raise MpdAllException("the %s configuration file '%s' could "
                 "not be read: %s" % (_programName, configFile, str(ex)))
         try:
@@ -177,7 +177,7 @@ def _writeConfigurationFileContentsTo(f, path, configFile):
                 if not line:
                     break  # while
                 f.write(line)
-        except BaseException, ex:
+        except BaseException as ex:
             raise MpdAllException("copying the contents of the %s "
                 "configuration file '%s' into the server configuration "
                 "file '%s' failed: %s" %
@@ -210,10 +210,10 @@ def _writeGeneratedConfigurationParametersTo(f, path, desc, serverDir):
             os.path.join(serverDir, _serverPidFile)))
         f.write(fmt % ("state_file",
             os.path.join(serverDir, _serverStateFile)))
-    except IOError, ex:
+    except IOError as ex:
         raise MpdAllException("writing a parameter definition to the "
             "server configuration file '%s' failed: %s" % (path, str(ex)))
-    except BaseException, ex:
+    except BaseException as ex:
         raise MpdAllException("generating the value of a parameter "
             "whose definition was to be written to the server configuration "
             "file '%s' failed: %s" % (path, str(ex)))
@@ -236,7 +236,7 @@ def _createServerConfigurationFile(path, desc, mainConfigFile, serverDir):
     try:
         try:
             f = file(path, "w")
-        except BaseException, ex:
+        except BaseException as ex:
             raise MpdAllException("creating the server configuration file "
                                   "'%s' failed: %s" % (path, str(ex)))
         try:
@@ -245,12 +245,12 @@ def _createServerConfigurationFile(path, desc, mainConfigFile, serverDir):
             f.write(_serverConfigGeneratedParamsStartFmt % mainConfigFile)
             _writeGeneratedConfigurationParametersTo(f, path, desc,
                                                      serverDir)
-        except MpdAllException, ex:
+        except MpdAllException as ex:
             raise ex
-        except IOError, ex:
+        except IOError as ex:
             raise MpdAllException("writing to the server configuration "
                                   "file '%s' failed: %s" % (path, str(ex)))
-        except BaseException, ex:
+        except BaseException as ex:
             raise MpdAllException("generating the contents of the server "
                                   "configuration file '%s' failed: %s" %
                                   (path, str(ex)))
@@ -265,18 +265,18 @@ def listServer(desc, configFile, dataDir):
     """
     Lists the MPD server described by 'desc'.
     """
-    print _serverName(desc)
+    print(_serverName(desc))
 
 def startServer(desc, configFile, dataDir):
     """
     Starts the MPD server described by 'desc'.
     """
     name = _serverName(desc)
-    print "Starting MPD server %s ..." % name
+    print("Starting MPD server %s ..." % name)
     serverDir = _serverDataDirectory(dataDir, desc)
     try:
         ut.ut_createDirectory(serverDir)
-    except BaseException, ex:
+    except BaseException as ex:
         raise MpdAllException("creating the server data directory '%s' "
                               "failed: %s" % (serverDir, str(ex)))
     ut.ut_tryToMakeFileAllAccess(serverDir)
@@ -284,7 +284,7 @@ def startServer(desc, configFile, dataDir):
     playlistsDir = _serverPlaylistsDirectory(serverDir)
     try:
         ut.ut_createDirectory(playlistsDir)
-    except BaseException, ex:
+    except BaseException as ex:
         raise MpdAllException("creating the server playlist "
                 "subdirectory '%s' failed: %s" % (playlistsDir, str(ex)))
     ut.ut_tryToMakeFileAllAccess(playlistsDir)
@@ -296,14 +296,14 @@ def startServer(desc, configFile, dataDir):
     if ut.ut_executeShellCommand(cmd) is None:
         raise MpdAllException("executing the following command to start it "
                               "failed: %s" % cmd)
-    print "Successfully started the MPD server %s" % name
+    print("Successfully started the MPD server %s" % name)
 
 def stopServer(desc, configFile, dataDir):
     """
     Stops the MPD server described by 'desc'.
     """
     name = _serverName(desc)
-    print "Stopping MPD server %s ..." % name
+    print("Stopping MPD server %s ..." % name)
     serverDir = _serverDataDirectory(dataDir, desc)
     serverConf = _serverConfigurationFile(serverDir)
     if not os.path.exists(serverConf):
@@ -313,7 +313,7 @@ def stopServer(desc, configFile, dataDir):
     if ut.ut_executeShellCommand(cmd) is None:
         raise MpdAllException("executing the following command to stop it "
                               "failed: %s" % cmd)
-    print "Successfully stopped the MPD server %s" % name
+    print("Successfully stopped the MPD server %s" % name)
 
 
 # Classes.
@@ -447,11 +447,11 @@ under it, will be created and deleted if and as necessary.)
                 if _conf.isLocalMpdServer(desc):
                     try:
                         f(desc, configFile, dataDir)
-                    except MpdAllException, ex:
+                    except MpdAllException as ex:
                         result = 2
                         self._fail("%s the MPD server '%s' failed "
                             "because %s" % (action, name, str(ex)))
-                    except BaseException, ex:
+                    except BaseException as ex:
                         result = 3
                         self._fail("%s the MPD server '%s' failed "
                             "due to an unexpected problem: %s" %

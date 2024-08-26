@@ -190,7 +190,7 @@ has the more compact (and regular) format
             assert desc is not None
             if selector(desc):
                 (host, port) = _conf.mpdServer(desc)
-                print lineFmt % (id, host, port)
+                print(lineFmt % (id, host, port))
         assert result >= 0
         return result
 

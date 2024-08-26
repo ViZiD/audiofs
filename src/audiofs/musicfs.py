@@ -744,14 +744,14 @@ def _fs_catalogueCompareFilePathnames(path1, path2):
     n2 = len(comps2)
     result = 0
     if n1 == n2:
-        for i in xrange(n1):
+        for i in range(n1):
             result = cmp(comps1[i], comps2[i])
             if result != 0:
                 break
     else:
         last1 = n1 - 1
         last2 = n2 - 1
-        for i in xrange(min(n1, n2)):
+        for i in range(min(n1, n2)):
             # All subdirs in a dir precede all files in the dir.
             isDir1 = (i < last1)
             isDir2 = (i < last2)
@@ -3414,7 +3414,7 @@ class fs_PlaylistCandidatePathnameListBuilder(fs_OrderedPathnameListBuilder):
         rating = int(self._fs_ratingsMap[str(origPath)])
         numChances = self._fs_ratingToChancesCount(rating)
         if numChances > 0:
-            for i in xrange(numChances):
+            for i in range(numChances):
                 self._fs_writeLine(path)
             self._fs_candidateCount += 1
             self._fs_lineCount += numChances
